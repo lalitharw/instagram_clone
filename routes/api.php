@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\v1\Auth\AuthController;
+use App\Http\Controllers\Api\v1\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,10 @@ Route::prefix("v1")->group(function(){
     Route::middleware("auth:sanctum")->group(function(){
         Route::controller(AuthController::class)->prefix("auth")->group(function(){
             Route::post("save-user-data","saveUserData");
+        });
+
+        Route::controller(PostController::class)->prefix("posts")->group(function(){
+            Route::post("store","store");
         });
     });
 
